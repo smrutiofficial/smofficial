@@ -1,5 +1,7 @@
 import React from 'react';
 import { IoIosArrowDown } from "react-icons/io";
+import Image from 'next/image';
+
 
 const Nav = () => {
     return (
@@ -11,7 +13,15 @@ const Nav = () => {
                 <button className="px-10 py-3 bg-[#B2B3DE] text-[#373559] font-bold custom-clip-path ">Portfolio</button>
                 <div className="flex flex-row justify-center items-center gap-5 profile">
                     <div className="bg-[#373559] w-12 h-12 overflow-hidden pic">
-                        <img src="/self.png" alt="" />
+                        <Image
+                            className="w-full h-full object"
+                            width={100}
+                            height={100}
+                            src="/self.png"
+                            alt=""
+                            // layout="fill"
+                        />
+
                     </div>
                     <p className="text-xl text-[#373559] font-medium">Smruti P. Rout</p>
                     <p><IoIosArrowDown /></p>
