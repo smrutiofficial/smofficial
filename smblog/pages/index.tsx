@@ -6,11 +6,24 @@ import Post from "../components/Post"
 import Image from 'next/image';
 import { blogs } from './Blog';
 import Popular from '@/components/popular';
-import Catagoribtn from "@/components/catagorybtn"
+import Catagoribtn from "@/components/catagorybtn";
+import Pagenation from "@/components/pagenation";
+import { IoSend } from "react-icons/io5";
 
 const index = () => {
     const uniqueCategories = Array.from(new Set(blogs.map((blog: any) => blog.catagory)));
-    
+
+    function calculateContainers(totalItems: number, maxItemsPerContainer: number) {
+        // Calculate the number of containers needed
+        const containers = Math.ceil(totalItems / maxItemsPerContainer);
+        return containers;
+    }
+
+    const totalItems = blogs.length;
+    const maxItemsPerContainer = 6;
+
+    const numberOfContainers = calculateContainers(totalItems, maxItemsPerContainer);
+
     return (
         <>
             <Navbar />
@@ -73,7 +86,7 @@ const index = () => {
                         <div className="w-[80%] h-[100%] py-5 px-4 mt-2 justify-center items-center flex flex-row flex-wrap gap-4">
 
                             {uniqueCategories.map((category: string, index: number) => (
-                               <Catagoribtn key={index} data={category} />
+                                <Catagoribtn key={index} data={category} />
                             ))}
 
                         </div>
@@ -81,9 +94,21 @@ const index = () => {
                 </div>
             </section>
             {/* pagenation */}
-            <div className="h-[20rem]"></div>
+            <div className="h-[10rem] flex flex-row justify-center items-center">
+                <div className="flex flex-row gap-4 border-4 bg-[#e2e3fe] border-[#373559] w-fit py-2 px-4">
+                    <p className="font-bold">Pre</p>
+                    <Pagenation count={numberOfContainers} />
+                    <p className="font-bold">nex</p>
+                </div>
+            </div>
             {/* addvatisement */}
-
+            <div className=" h-[20rem] flex justify-center items-center promo">
+                <div className="bg-[#373559] w-[90%] h-[90%] flex flex-col items-start gap-[1rem] text-[#fff] pl-[10%] justify-center">
+                    <p className="text-3xl font-bold">You have a new Project Idea</p>
+                    <p className='text-xl'>Contact me now and get a 10% discount on Your new Project</p>
+                    <button className="py-4 px-6 mt-5 flex gap-5 items-center justify-center text-base font-bold bg-[#e2e3fe] text-[#373559]">Contact Me <IoSend /></button>
+                </div>
+            </div>
             {/* footer */}
         </>
     )
