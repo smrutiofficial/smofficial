@@ -141,7 +141,7 @@ const blogs: Blog[] = [
 
         detail: "An introduction to Linux networking, covering the basics of network configuration and troubleshooting.",
         featured: true,
-        catagory:"Technology",
+        catagory:"Open Source",
         views:12,
         comment: {
             id: 8,
@@ -158,7 +158,7 @@ const blogs: Blog[] = [
 
         detail: "Step-by-step guide on setting up a web server on Linux using Apache, Nginx, and other tools.",
         featured: false,
-        catagory:"Technology",
+        catagory:"Ubuntu",
         views:12,
         comment: {
             id: 9,
@@ -175,7 +175,7 @@ const blogs: Blog[] = [
 
         detail: "Tips and techniques for tuning the performance of your Linux system to get the best out of your hardware.",
         featured: true,
-        catagory:"Technology",
+        catagory:"Sci-fi",
         views:12,
         comment: {
             id: 10,

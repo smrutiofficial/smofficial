@@ -5,28 +5,31 @@ import Slider from "../components/Slider"
 import Post from "../components/Post"
 import Image from 'next/image';
 import { blogs } from './Blog';
-
+import Popular from '@/components/popular';
+import Catagoribtn from "@/components/catagorybtn"
 
 const index = () => {
+    const uniqueCategories = Array.from(new Set(blogs.map((blog: any) => blog.catagory)));
+    
     return (
         <>
             <Navbar />
             <section className="w-screen h-screen overflow-hidden">
                 <div className="bgani w-screen h-screen absolute top-0 left-0 overflow-hidden">
                     <Image
-                        className='w-full h-full object-cover '
+                        className='w-full h-full object-cover z-0 opacity-50'
                         src={"/bg.gif"}
                         width={100}
                         height={100}
                         alt=''
                     />
                 </div>
-                <p className="font-bold text-5xl pt-28 pl-32 text-[#373559]">Welcome ,Smruti !</p>
+                <p className="font-bold relative opacity-100 z-5 text-5xl pt-28 pl-32 text-[#373559]">Welcome ,Smruti !</p>
                 <Slider />
             </section>
             <section className="w-screen h-[100%]  flex flex-row pt-[6rem]">
                 <div className="w-[75%]  h-full flex flex-col items-center e1 gap-10">
-                    {blogs.map((blog: any, index: number) => (
+                    {blogs.slice(0, 6).map((blog: any, index: number) => (
                         <Post key={index} blog={blog} />
                     ))}
                 </div>
@@ -53,8 +56,35 @@ const index = () => {
                             </div>
                         </div>
                     </div>
+                    {/* popular post section */}
+                    <div className="tag w-full h-[100%] flex flex-col justify-center">
+                        <div className="titpo bg-[#373559] w-[80%] py-5 text-white">
+                            <p className="text-center text-2xl font-medium">Popular Post</p>
+                        </div>
+                        {/* posts */}
+                        <Popular />
+                        <Popular />
+                        <Popular />
+                        {/* catagory */}
+                        <div className="titpo bg-[#373559] w-[80%] py-5 text-white mt-10">
+                            <p className="text-center text-2xl font-medium">Catagories</p>
+                        </div>
+                        {/* catagories item */}
+                        <div className="w-[80%] h-[100%] py-5 px-4 mt-2 justify-center items-center flex flex-row flex-wrap gap-4">
+
+                            {uniqueCategories.map((category: string, index: number) => (
+                               <Catagoribtn key={index} data={category} />
+                            ))}
+
+                        </div>
+                    </div>
                 </div>
             </section>
+            {/* pagenation */}
+            <div className="h-[20rem]"></div>
+            {/* addvatisement */}
+
+            {/* footer */}
         </>
     )
 }

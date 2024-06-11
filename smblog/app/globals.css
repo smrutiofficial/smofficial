@@ -84,3 +84,12 @@ nav{
   --timer-background-color: rgba(0, 0, 0, 0) !important;
 }
 
+.titpo{
+  clip-path: polygon(0 0, 93% 0, 100% 24%, 100% 80%, 100% 100%, 7% 100%, 0 79%, 0% 20%);
+}
+.popoulart{
+  clip-path: polygon(0 0, 93% 0, 100% 0, 100% 82%, 86% 100%, 0 100%, 0 79%, 0% 20%);
+}
+.magiccut{
+  clip-path: polygon(0 0, 93% 0, 100% 0, 100% 82%, 100% 100%, 10% 100%, 0 72%, 0% 20%);
+}
