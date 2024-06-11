@@ -80,3 +80,7 @@ nav{
 .catagory{
   clip-path: polygon(12% 0, 80% 0%, 100% 0, 100% 66%, 100% 100%, 0 100%, 0% 80%, 0 37%);
 }
+.awssld__timer {
+  --timer-background-color: rgba(0, 0, 0, 0) !important;
+}
+

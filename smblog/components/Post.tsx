@@ -17,7 +17,7 @@ const Post = ({ blog }: { blog: any }) => {
                             height={100}
                         />
                         <div className="catagory absolute bottom-0 right-0 bg-[#373559] w-3/4 py-4 text-white font-bold flex justify-center">
-                            <p>TECHNOLOGY</p>
+                            <p>{blog.catagory}</p>
                         </div>
                     </div>
                     <div className="comhy bg-[#E2E3FE] w-[60%] h-full flex flex-col justify-center items-center">

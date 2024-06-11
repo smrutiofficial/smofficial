@@ -4,21 +4,29 @@ import "../app/globals.css";
 import Slider from "../components/Slider"
 import Post from "../components/Post"
 import Image from 'next/image';
-import {blogs} from './Blog';
+import { blogs } from './Blog';
 
 
 const index = () => {
-    console.log(blogs)
     return (
         <>
             <Navbar />
             <section className="w-screen h-screen overflow-hidden">
+                <div className="bgani w-screen h-screen absolute top-0 left-0 overflow-hidden">
+                    <Image
+                        className='w-full h-full object-cover '
+                        src={"/bg.gif"}
+                        width={100}
+                        height={100}
+                        alt=''
+                    />
+                </div>
                 <p className="font-bold text-5xl pt-28 pl-32 text-[#373559]">Welcome ,Smruti !</p>
                 <Slider />
             </section>
             <section className="w-screen h-[100%]  flex flex-row pt-[6rem]">
                 <div className="w-[75%]  h-full flex flex-col items-center e1 gap-10">
-                   {blogs.map((blog:any, index:number) => (
+                    {blogs.map((blog: any, index: number) => (
                         <Post key={index} blog={blog} />
                     ))}
                 </div>
