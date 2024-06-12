@@ -9,6 +9,10 @@ import Popular from '@/components/popular';
 import Catagoribtn from "@/components/catagorybtn";
 import Pagenation from "@/components/pagenation";
 import { IoSend } from "react-icons/io5";
+import { RiInstagramLine } from "react-icons/ri";
+import { BsTwitter } from "react-icons/bs";
+import { VscGithubInverted } from "react-icons/vsc";
+import { IoLogoLinkedin } from "react-icons/io5";
 
 const index = () => {
     const uniqueCategories = Array.from(new Set(blogs.map((blog: any) => blog.catagory)));
@@ -36,6 +40,16 @@ const index = () => {
                         height={100}
                         alt=''
                     />
+                    {/* social media */}
+                    <div className="bg-[#373559] h-fit w-fit absolute z-5 top-[25%] right-[6%] flex justify-center items-center socialop">
+                        <div className="relative w-[90%] my-1 bg-[#e2e3fe] text-[#373559] flex flex-col justify-center items-center gap-4 py-6 px-4 text-2xl socialop">
+                            <VscGithubInverted />
+                            <IoLogoLinkedin />
+                            <RiInstagramLine />
+                            <BsTwitter />
+                        </div>
+
+                    </div>
                 </div>
                 <p className="font-bold relative opacity-100 z-5 text-5xl pt-28 pl-32 text-[#373559]">Welcome ,Smruti !</p>
                 <Slider />
@@ -95,10 +109,10 @@ const index = () => {
             </section>
             {/* pagenation */}
             <div className="h-[10rem] flex flex-row justify-center items-center">
-                <div className="flex flex-row gap-4 border-4 bg-[#e2e3fe] border-[#373559] w-fit py-2 px-4">
-                    <p className="font-bold">Pre</p>
+                <div className="flex flex-row gap-4 border-4 bg-[#e2e3fe] border-[#373559] w-fit py-5 px-6">
+                    <p className="font-bold">PREV</p>
                     <Pagenation count={numberOfContainers} />
-                    <p className="font-bold">nex</p>
+                    <p className="font-bold">NEXT</p>
                 </div>
             </div>
             {/* addvatisement */}
