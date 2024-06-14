@@ -48,7 +48,6 @@ const index = () => {
                             <RiInstagramLine />
                             <BsTwitter />
                         </div>
-
                     </div>
                 </div>
                 <p className="font-bold relative opacity-100 z-5 text-5xl pt-28 pl-32 text-[#373559]">Welcome ,Smruti !</p>

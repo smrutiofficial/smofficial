@@ -99,3 +99,19 @@ nav{
 .socialop{
   clip-path: polygon(0 0, 82% 0, 100% 9%, 100% 61%, 100% 100%, 21% 100%, 0 92%, 0 37%);
 }
+.cpath{
+  clip-path: polygon(10% 0, 80% 0%, 100% 0, 100% 80%, 100% 100%, 0 100%, 0% 80%, 0% 20%);
+}
+.cpath_2{
+  clip-path: polygon(10% 0, 80% 0%, 100% 0, 100% 89%, 87% 100%, 0 100%, 0% 80%, 0 0);
+}
+.inputc{
+  clip-path: polygon(7% 0, 80% 0%, 100% 0, 100% 78%, 94% 100%, 0 100%, 0 76%, 0 28%);
+}
+.inputc::placeholder {
+  color: #373559; /* Change this to any color you like */
+  opacity: 0.5; /* Ensures the color is fully applied */
+}
+.inputbtn{
+  clip-path: polygon(6% 0, 80% 0%, 100% 0, 100% 83%, 96% 100%, 0 100%, 0 76%, 0 20%);
+}
