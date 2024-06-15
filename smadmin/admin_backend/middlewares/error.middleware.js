@@ -6,8 +6,8 @@ function errorHandler(err, req, res, next) {
     // Set default error response
     const errorResponse = {
       success: false,
-      statuscode: 500,
-      message: 'An unexpected error occurred.'
+      statuscode: err.status || 500,
+      message: err.message || 'An unexpected error occurred.'
     };
   
     // Customize the error message if available

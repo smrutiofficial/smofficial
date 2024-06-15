@@ -5,7 +5,6 @@ import mongoose, { Schema } from "mongoose";
 const userSchema = new Schema({
     username: {
         type: String,
-        required: true,
         unique: true,
         lowecase: true,
         trim: true,
@@ -17,12 +16,9 @@ const userSchema = new Schema({
         unique: true,
         lowecase: true,
     },
-    fullname: {
-        type: String,
-        required: true,
-    },
     avatar: {
         type: String,
+        default:""
     },
     password: {
         type: String,
