@@ -60,7 +60,7 @@ const Login = () => {
               /><br />
               <div className="mb-[4rem] mt-[2rem] bg-[#B2B3DE] text-black px-5 py-3 w-[10rem] h-[3rem] flex flex-col justify-center items-center relative inputbtn">
                 <div className="bg-[#373559] w-[95%] h-[90%] absolute flex text-center items-center justify-center inputbtn">
-                  <button className='text-[#B2B3DE] font-bold'>Let&apos;s get in</button>
+                  <button className='text-[#B2B3DE] font-bold'>Let&apos;s getin</button>
                 </div>
               </div>
             </form>
