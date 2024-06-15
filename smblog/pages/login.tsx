@@ -1,22 +1,55 @@
-import React from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import "../app/globals.css";
 import Nav from "../components/Nav";
-import "../app/globals.css"
 import Image from 'next/image';
 import { RiInstagramLine } from "react-icons/ri";
 import { BsTwitter } from "react-icons/bs";
 import { VscGithubInverted } from "react-icons/vsc";
 import { IoLogoLinkedin } from "react-icons/io5";
+import { useRouter } from 'next/router';
 
 
 const Login = () => {
   const router = useRouter();
-  
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e: any) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value })
+  };
+  const handlesubmit = async (e: any) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      setError(false);
+      const res = await fetch('http://localhost:8000/api/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+      setLoading(false);
+      // setError(false);
+      if (data.success === false){
+        setError(true);
+        return;
+      }
+       // Navigate to home page after successful authentication
+       router.push('/');
+      // console.log(data)
+    } catch (err) {
+      setLoading(false);
+      setError(true);
+    }
+  };
   const handleClick = {
-    signup: () => router.push('/register')
+    register: () => router.push('/register')
   };
   return (
-    <section className="h-screen  w-screen overflow-hidden bg-[#5D5B9A] flex justify-center items-center">
+    <section className="h-screen w-screen overflow-hidden bg-[#5D5B9A] flex justify-center items-center">
       <Nav />
       <div className=" w-[80%] h-[85%] flex items-center relative">
 
@@ -45,29 +78,36 @@ const Login = () => {
         {/* main login section */}
         <div className="cpath_2 absolute bg-[#373559] w-[35%] h-[80%] right-0 transform translate-y-[6rem] flex flex-col items-center pt-[3rem]" >
           <div className="w-[80%] text-[#B2B3DE]">
-            <p className='text-4xl font-bold mb-10'>Log in</p>
+            <p className='text-4xl font-bold mb-10'>Login</p>
             <p className='mb-5'>Hello, friends! I&apos;m Smarttime - task manager you can trust everything. Let’s get in touch !</p>
-            <form>
+            <form onSubmit={handlesubmit}>
               <input
-                className='w-full h-[2.8rem] text-[#373559] px-4 bg-[#B2B3DE] mt-5 inputc'
+                className='w-full h-[2.8rem] text-[#373559] px-4 bg-[#B2B3DE] inputc'
                 type="text"
+                id='email'
                 placeholder='Email'
+                onChange={handleChange}
               /><br /><br />
               <input
                 className='w-full text-[#373559] px-4 h-[2.8rem] bg-[#B2B3DE] inputc'
                 type="password"
+                id='password'
                 placeholder='Password'
+                onChange={handleChange}
               /><br />
-              <div className="mb-[4rem] mt-[2rem] bg-[#B2B3DE] text-black px-5 py-3 w-[10rem] h-[3rem] flex flex-col justify-center items-center relative inputbtn">
+              <div className="mb-[2rem] mt-[2rem] bg-[#B2B3DE] text-black px-5 py-3 w-[10rem] h-[3rem] flex flex-col justify-center items-center relative inputbtn">
                 <div className="bg-[#373559] w-[95%] h-[90%] absolute flex text-center items-center justify-center inputbtn">
-                  <button className='text-[#B2B3DE] font-bold'>Let&apos;s getin</button>
+                  <button disabled={loading} className='text-[#B2B3DE] font-bold disabled:opacity-40'> {loading ? 'Loading ...' : 'Lets getin'}</button>
                 </div>
               </div>
             </form>
+            <p className='text-red-400'>{error && 'Something went wrong!'}</p>
+
             <p>don&apos;t have an account ?
-              <span 
-              onClick={handleClick.signup}
-              className='font-bold cursor-pointer'> Sign up</span> </p>
+              <span
+                onClick={handleClick.register}
+                className='font-bold cursor-pointer'> Sign in</span>
+            </p>
           </div>
         </div>
       </div>
@@ -75,4 +115,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default Login

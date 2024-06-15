@@ -36,7 +36,8 @@ const Register = () => {
         setError(true);
         return;
       }
-      console.log(data)
+      router.push('/login');
+      // console.log(data)
     } catch (err) {
       setLoading(false);
       setError(true);
