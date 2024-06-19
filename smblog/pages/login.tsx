@@ -7,16 +7,22 @@ import { BsTwitter } from "react-icons/bs";
 import { VscGithubInverted } from "react-icons/vsc";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { useRouter } from "next/router";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
   });
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { loading, error } = useSelector((state: any) => state.user);
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -24,8 +30,7 @@ const Login = () => {
   const handlesubmit = async (e: any) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      setError(false);
+      dispatch(signInStart());
       const res = await fetch("http://localhost:8000/api/auth/signin", {
         method: "POST",
         headers: {
@@ -34,18 +39,17 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      setLoading(false);
-      // setError(false);
+
       if (data.success === false) {
-        setError(true);
+        dispatch(signInFailure(data));
         return;
       }
       // Navigate to home page after successful authentication
+      dispatch(signInSuccess(data));
       router.push("/");
       // console.log(data)
     } catch (err) {
-      setLoading(false);
-      setError(true);
+      dispatch(signInFailure(error));
     }
   };
   const handleClick = {
@@ -116,7 +120,9 @@ const Login = () => {
                 </div>
               </div>
             </form>
-            <p className="text-red-400">{error && "Something went wrong!"}</p>
+            <p className="text-red-400">
+              {error ? error || "Something went wrong!" : ""}
+            </p>
 
             <p>
               don&apos;t have an account ?
