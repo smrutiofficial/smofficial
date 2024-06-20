@@ -19,7 +19,6 @@ const Login = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -40,17 +39,16 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-
-      if (data.success === false) {
-        dispatch(signInFailure(data));
-        return;
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to sign in");
       }
       // Navigate to home page after successful authentication
       dispatch(signInSuccess(data));
+
       router.push("/");
       // console.log(data)
     } catch (err) {
-      dispatch(signInFailure(error));
+      dispatch(signInFailure(err));
     }
   };
   const handleClick = {
@@ -121,8 +119,13 @@ const Login = () => {
                 </div>
               </div>
             </form>
+            <div className="flex justify-center items-center mb-5">
+              <button className="bg-[#5d5b9a] w-[16rem] h-[3rem]">
+                Continue with Google
+              </button>
+            </div>
             <p className="text-red-400">
-              {error ? error || "Something went wrong!" : ""}
+              {error ? error.message || "Something went wrong!" : ""}
             </p>
 
             <p>
@@ -132,7 +135,7 @@ const Login = () => {
                 className="font-bold cursor-pointer"
               >
                 {" "}
-                Sign in
+                Register
               </span>
             </p>
           </div>
