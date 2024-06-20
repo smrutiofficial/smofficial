@@ -25,8 +25,8 @@ const Login = () => {
   const { loading, error } = useSelector((state: any) => state.user);
   const currentUser = useSelector((state: any) => state.user.currentUser);
   useEffect(() => {
-    if (!currentUser) {
-      router.push("/login");
+    if (currentUser) {
+      router.push("/");
     }
   }, [currentUser, router]);
 
@@ -37,7 +37,7 @@ const Login = () => {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch("http://localhost:8000/api/auth/signin", {
+      const res = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
