@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../app/globals.css";
 import Nav from "../components/Nav";
 import Image from "next/image";
@@ -23,6 +23,12 @@ const Login = () => {
     password: "",
   });
   const { loading, error } = useSelector((state: any) => state.user);
+  const currentUser = useSelector((state: any) => state.user.currentUser);
+  useEffect(() => {
+    if (!currentUser) {
+      router.push("/login");
+    }
+  }, [currentUser, router]);
 
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });

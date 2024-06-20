@@ -15,6 +15,7 @@ import { VscGithubInverted } from "react-icons/vsc";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import Footer from "@/components/footer";
 
 const index = () => {
   const uniqueCategories = Array.from(
@@ -70,7 +71,7 @@ const index = () => {
           </div>
         </div>
         <p className="font-bold relative opacity-100 z-5 text-5xl pt-28 pl-32 text-[#373559]">
-          Welcome ,{currentUser ? currentUser.username.split(" ")[0] : ""}
+          Welcome back ,{currentUser ? currentUser.username.split(" ")[0] : ""}
         </p>
         <Slider />
       </section>
@@ -147,6 +148,7 @@ const index = () => {
         </div>
       </div>
       {/* footer */}
+      <Footer />
     </>
   );
 };

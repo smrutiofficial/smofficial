@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../app/globals.css";
 import Nav from "../components/Nav";
 import Image from "next/image";
@@ -7,6 +7,7 @@ import { BsTwitter } from "react-icons/bs";
 import { VscGithubInverted } from "react-icons/vsc";
 import { IoLogoLinkedin } from "react-icons/io5";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Register = () => {
   const router = useRouter();
@@ -21,6 +22,14 @@ const Register = () => {
   const handleChange = (e: any) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+
+  const currentUser = useSelector((state: any) => state.user.currentUser);
+  useEffect(() => {
+    if (currentUser) {
+      router.replace("/");
+    }
+  }, [currentUser, router]);
+
   const handlesubmit = async (e: any) => {
     e.preventDefault();
     try {
